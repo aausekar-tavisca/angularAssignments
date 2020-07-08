@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row calculator-result-screen">
+    <div class="col-xs-12">
+      <div class="right-text-alignment">
+        <div class="col-xs-12">
+          <h5>{{expression}}</h5>
+        </div>
+        <div class="col-xs-12">
+          <h2>{{finalResult}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row button-section">
+    <div class="col-xs-9">
+      <div class="row buttonRow"></div>
+      <div class="row buttonRow" *ngFor="let numberRow of calNumbers">
+        <div class="col-xs-4 numberColumn" *ngFor="let number of numberRow; index as i">
+          <input type="button" class="btn-primary-outline calNumber" value="{{ number }}" [disabled]="number==''"
+            (click)="click(number)" />
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="buttonRow">
+        <input type="button" class="btn-primary-outline calNumber" value="/" (click)="click('/')" />
+      </div>
+      <div class=" buttonRow">
+        <input type="button" class="btn-primary-outline calNumber" value="X" (click)="click('X')" />
+      </div>
+      <div class=" buttonRow">
+        <input type="button" class="btn-primary-outline calNumber" value="-" (click)="click('-')" />
+      </div>
+      <div class=" buttonRow">
+        <input type="button" class="btn-primary-outline calNumber" value="+" (click)="click('+')" />
+      </div>
+      <div class="buttonRow">
+        <input type="button" class="btn-primary-outline calNumber" value="=" (click)="click('=')" />
+      </div>
+    </div>
+  </div>
+</div>

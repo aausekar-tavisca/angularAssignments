@@ -1,0 +1,26 @@
+.calculator-result-screen {
+  border: solid black 1px;
+}
+
+.calNumber {
+  width: 100%;
+  height: 100%;
+}
+
+.buttonRow {
+  height: 50px;
+}
+
+.button-section {
+  border: solid black 1px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.numberColumn {
+  height: 100%;
+}
+
+.right-text-alignment {
+  text-align: right;
+}
