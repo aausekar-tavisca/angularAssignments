@@ -1,0 +1,61 @@
+<div>
+  <h2>Product Details</h2>
+  <form name="frmProduct" [formGroup]="frmProduct" (ngSubmit)="save()">
+    <div>
+      <label>Product Row Id</label>
+      <input type="text" formControlName="ProductRowId" name="ProductRowId">
+      <div *ngIf="frmProduct.controls.ProductRowId.dirty && !frmProduct.controls.ProductRowId.valid">
+        <p *ngIf="frmProduct.controls.ProductRowId.errors.required">Value is must</p>
+        <p *ngIf="frmProduct.controls.ProductRowId.errors.minlength">Value must be 2 digits minimum</p>
+        <p *ngIf="frmProduct.controls.ProductRowId.errors.maxlength">Value can be 8 digits maximum</p>
+        <p *ngIf="frmProduct.controls.ProductRowId.errors.pattern">Value must be numeric</p>
+      </div>
+    </div>
+    <div>
+      <label>Product Id</label>
+      <input type="text" formControlName="ProductId" name="ProductId">
+    </div>
+    <div>
+      <label>Product Name</label>
+      <input type="text" formControlName="ProductName" name="ProductName">
+    </div>
+    <div>
+      <label>Categories</label>
+      <select formControlName="CategoryName" name="CategoryName">
+        <option *ngFor="let c of categories" value="{{c}}">{{c}}</option>
+      </select>
+    </div>
+    <div>
+      <label>Manufacturers</label>
+      <select formControlName="Manufacturer" name="Manufacturer">
+        <option *ngFor="let m of manufacturers" value="{{m}}">{{m}}</option>
+      </select>
+    </div>
+    <div>
+      <label>Description</label>
+      <input formControlName="Description" name="Description" type="text">
+    </div>
+    <div>
+      <label>Base Price</label>
+      <input type="text" formControlName="BasePrice" name="BasePrice">
+    </div>
+    <div>
+      <input type="button" value="Clear" (click)="clear()">
+      <input type="submit" value="Save" [disabled]="!frmProduct.valid">
+    </div>
+  </form>
+</div>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let h of headers">{{h}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prd of products" (click)="getSelectedRecord(prd)" class="product-row">
+      <td *ngFor="let h of headers">{{prd[h]}}</td>
+      <td><input type="button" value="Delete" (click)="deleteProduct(prd)"></td>
+    </tr>
+  </tbody>
+</table>
