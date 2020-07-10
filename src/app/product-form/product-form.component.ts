@@ -94,6 +94,12 @@ export class ProductFormComponent implements OnInit {
     this.updateProduct = false;
     this.product = new Product(0, "", "", "", "", "", 0);
     this.frmProduct.setValue(this.product);
+    this.frmProduct
+      .get("ProductId")
+      .setValidators([
+        Validators.required,
+        CustomValidator.CheckProductIdIsUnique.bind(this),
+      ]);
   }
   save(): void {
     // read value from FormControl received from FromGroup
