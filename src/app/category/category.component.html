@@ -1,0 +1,21 @@
+<div *ngIf="FilteredCategories.length!==0">
+  <h3>Categories</h3>
+  <table>
+    <thead>
+      <tr>
+        <th class="tableCell">
+          Category Id
+        </th>
+        <th class="tableCell">
+          Category Name
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cat of FilteredCategories">
+        <td class="tableCell">{{cat.CategoryId}}</td>
+        <td class="tableCell">{{cat.CategoryName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

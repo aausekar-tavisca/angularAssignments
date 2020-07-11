@@ -1,0 +1,21 @@
+<div *ngIf="FilterProducts.length!==0">
+  <h3>Products</h3>
+  <table>
+    <thead>
+      <tr>
+        <th class="tableCell">ProductRowId</th>
+        <th class="tableCell">ProductId</th>
+        <th class="tableCell">ProductName</th>
+        <th class="tableCell">ProductCategory</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prd of FilterProducts">
+        <td class="tableCell">{{prd.ProductRowId}}</td>
+        <td class="tableCell">{{prd.ProductId}}</td>
+        <td class="tableCell">{{prd.ProductName}}</td>
+        <td class="tableCell">{{prd.CategoryName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <h1>Assignment 5.1</h1>
+  <div class="search-bar">
+    <label>Search: </label><input type="text" name="search-component" id="search-component"
+      placeholder="Category OR Product Name" [(ngModel)]="searchName" (input)="search()" />
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-xs-6">
+    <app-category></app-category>
+  </div>
+  <div class="col-xs-6">
+    <app-product></app-product>
+  </div>
+</div>
