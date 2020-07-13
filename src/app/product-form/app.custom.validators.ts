@@ -1,6 +1,7 @@
 import { Product } from "./../Model/app.product.model";
 import { AbstractControl } from "@angular/forms";
 import { ProductFormComponent } from "./product-form.component";
+import { HttpServiceFormComponent } from "../http-service-form/http-service-form.component";
 
 export class CustomValidator {
   static CheckEven(ctrl: AbstractControl): any {
@@ -15,6 +16,17 @@ export class CustomValidator {
   static CheckProductIdIsUnique(control: AbstractControl): any {
     if (
       (<ProductFormComponent>(<unknown>this)).products.findIndex(
+        (p) => p.ProductId === control.value
+      ) === -1
+    ) {
+      return null;
+    }
+    return { notUnique: true, errorMessage: "Product Id already exist" };
+  }
+
+  static CheckProductIdIsDifferent(control: AbstractControl): any {
+    if (
+      (<HttpServiceFormComponent>(<unknown>this)).products.findIndex(
         (p) => p.ProductId === control.value
       ) === -1
     ) {

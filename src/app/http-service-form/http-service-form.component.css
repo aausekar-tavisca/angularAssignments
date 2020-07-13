@@ -1,0 +1,8 @@
+.tableCell {
+  border: 1px solid #ddd;
+}
+
+.error small {
+  color: red;
+  display: inline-block;
+}

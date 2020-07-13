@@ -1,0 +1,100 @@
+<div class="row">
+  <h1>Assignment 5.2</h1>
+  <div class="col-xs-3">
+    <form [formGroup]="formGroup" (ngSubmit)="save()">
+      <div class=" form-group">
+        <label for="ProductRowId">Product Row Id</label>
+        <input type="text" class="form-control" id="ProductRowId" aria-describedby="emailHelp"
+          placeholder="Enter Product Row Id" formControlName="ProductRowId">
+        <div class="error" *ngIf="formGroup.controls.ProductRowId.dirty && !formGroup.controls.ProductRowId.valid">
+          <small *ngIf="formGroup.controls.ProductRowId.errors.required">Product Row Id is mandatory</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ProductId">Product Id</label>
+        <input type="text" class="form-control" id="ProductId" placeholder="Enter Product Id"
+          formControlName="ProductId">
+        <div class="error" *ngIf="formGroup.controls.ProductId.dirty && !formGroup.controls.ProductId.valid">
+          <small *ngIf="formGroup.controls.ProductId.errors.required">Product Id is mandatory</small>
+          <small
+            *ngIf="formGroup.controls.ProductId.errors.notUnique">{{formGroup.controls.ProductId.errors.errorMessage}}</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ProductName">Product Name</label>
+        <input type="text" class="form-control" id="ProductName" placeholder="Enter Product Name"
+          formControlName="ProductName">
+        <div class="error" *ngIf="formGroup.controls.ProductName.dirty && !formGroup.controls.ProductName.valid">
+          <small *ngIf="formGroup.controls.ProductName.errors.required">Product Name is mandatory</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Category">Product Category</label>
+        <select id="Category" formControlName="CategoryName">
+          <option *ngFor="let c of categories" value="{{c}}">{{c}}</option>
+        </select>
+        <div class="error" *ngIf="formGroup.controls.CategoryName.dirty && !formGroup.controls.CategoryName.valid">
+          <small *ngIf="formGroup.controls.CategoryName.errors.required">Category is mandatory</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Manufacturer">Product Manufacturer</label>
+        <select id="Manufacturer" formControlName="Manufacturer">
+          <option *ngFor="let m of manufacturers" value="{{m}}">{{m}}</option>
+        </select>
+        <div class="error" *ngIf="formGroup.controls.Manufacturer.dirty && !formGroup.controls.Manufacturer.valid">
+          <small *ngIf="formGroup.controls.Manufacturer.errors.required">Manufacturer is mandatory</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="Description" placeholder="Enter Description"
+          formControlName="Description">
+        <div class="error" *ngIf="formGroup.controls.Description.dirty && !formGroup.controls.Description.valid">
+          <small *ngIf="formGroup.controls.Description.errors.required">Description is mandatory</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="BasePrice">Base Price</label>
+        <input type="text" class="form-control" id="BasePrice" placeholder="Enter Base Price"
+          formControlName="BasePrice">
+        <div class="error" *ngIf="formGroup.controls.BasePrice.dirty && !formGroup.controls.BasePrice.valid">
+          <small *ngIf="formGroup.controls.BasePrice.errors.required">Base Price is mandatory</small>
+          <small *ngIf="!formGroup.controls.BasePrice.errors.valid">
+            {{formGroup.controls.BasePrice.errors.errorMessage}}</small>
+        </div>
+      </div>
+      <input type="submit" value="Save" class="btn btn-primary" [disabled]="!formGroup.valid">
+      <input type="button" value="Clear" class="btn btn-primary" (click)="clear()">
+      <div>
+        <p>{{status}}</p>
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-9">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let header of headers" class="tableCell">
+            {{header}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products;let i=index">
+          <td *ngFor=" let header of headers" class="tableCell">
+            <input type="text" [(ngModel)]="product[header]" [attr.name]="product.ProductId" disabled />
+          </td>
+          <td class="tableCell">
+            <input type="button" [value]="updateIsClicked?'Save':'Update'" id="Update" name="Update"
+              (click)="!updateIsClicked?makeRowEditable(product.ProductId):updateRecord(product)" />
+          </td>
+          <td class="tableCell">
+            <input type="button" value="Delete" id="Delete" name="Delete"
+              (click)="deleteProduct(product.ProductRowId)" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

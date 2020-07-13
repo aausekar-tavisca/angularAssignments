@@ -8,8 +8,9 @@ import { ProductFormComponent } from "./product-form/product-form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CategoryComponent } from "./category/category.component";
 import { ProductComponent } from "./product/product.component";
-import { SearchComponent } from './search/search.component';
-
+import { SearchComponent } from "./search/search.component";
+import { HttpServiceFormComponent } from "./http-service-form/http-service-form.component";
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,8 +19,15 @@ import { SearchComponent } from './search/search.component';
     CategoryComponent,
     ProductComponent,
     SearchComponent,
+    HttpServiceFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
