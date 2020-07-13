@@ -11,7 +11,6 @@ import { CustomValidator } from "../product-form/app.custom.validators";
   styleUrls: ["./http-service-form.component.css"],
 })
 export class HttpServiceFormComponent implements OnInit {
-  updateIsClicked: boolean;
   products: Array<Product>;
   headers: Array<string>;
   product: Product;
@@ -20,7 +19,6 @@ export class HttpServiceFormComponent implements OnInit {
   manufacturers: Array<string>;
   formGroup: FormGroup;
   constructor(private productSerice: ProductHttpService) {
-    this.updateIsClicked = false;
     this.product = new Product(0, "", "", "", "", "", 0);
     this.products = new Array<Product>();
     this.headers = new Array<string>();
@@ -109,32 +107,14 @@ export class HttpServiceFormComponent implements OnInit {
         this.status = `Error Occured ${error}`;
       }
     );
-    this.updateIsClicked = false;
-    this.enable_disable_cells(prd.ProductId, false);
   }
 
-  makeRowEditable(productId: string) {
-    this.updateIsClicked = true;
-    this.enable_disable_cells(productId, true);
-  }
-
-  private enable_disable_cells(productId: string, enable: boolean) {
-    let cellInputs = document.getElementsByName(productId);
-    if (enable) {
-      console.log("enabling " + productId);
-      cellInputs.forEach((i) => i.removeAttribute("disabled"));
-    } else {
-      console.log("disabling" + productId);
-      cellInputs.forEach((i) => i.setAttribute("disabled", "true"));
-    }
-  }
   clear() {
     console.log("clear form");
     this.product = new Product(0, "", "", "", "", "", 0);
     this.formGroup.setValue(this.product);
   }
   loadProducts() {
-    this.updateIsClicked = false;
     this.productSerice.getProducts().subscribe(
       (response) => {
         this.products = response;

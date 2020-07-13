@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers" class="tableCell">
+        {{header}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of DataSource;let i=index" [setColor]="color">
+      <td *ngFor=" let header of headers" class="tableCell">
+        <input type="text" [(ngModel)]="product[header]" [attr.name]="product.ProductId" disabled />
+      </td>
+      <td class="tableCell">
+        <input type="button" [value]="updateIsClicked?'Save':'Update'" id="Update" name="Update"
+          (click)="!updateIsClicked?makeRowEditable(product.ProductId):updateRecord(product)" />
+      </td>
+      <td class="tableCell">
+        <input type="button" value="Delete" id="Delete" name="Delete" (click)="deleteProduct(product.ProductRowId)" />
+      </td>
+    </tr>
+  </tbody>
+</table>

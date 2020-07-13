@@ -11,6 +11,9 @@ import { ProductComponent } from "./product/product.component";
 import { SearchComponent } from "./search/search.component";
 import { HttpServiceFormComponent } from "./http-service-form/http-service-form.component";
 import { HttpClientModule } from "@angular/common/http";
+import { TableViewComponent } from "./table-view/table-view.component";
+import { ColorDirective } from "./custome-directives/app.color.directive";
+import { ProductIdCheckDirective } from "./custome-directives/app.product-id-check.directive";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,9 @@ import { HttpClientModule } from "@angular/common/http";
     ProductComponent,
     SearchComponent,
     HttpServiceFormComponent,
+    TableViewComponent,
+    ColorDirective,
+    ProductIdCheckDirective,
   ],
   imports: [
     BrowserModule,

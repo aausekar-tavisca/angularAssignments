@@ -1,11 +1,12 @@
 <div class="row">
-  <h1>Assignment 5.2</h1>
+  <h1>Assignment 5.2 & Assignment 6</h1>
   <div class="col-xs-3">
     <form [formGroup]="formGroup" (ngSubmit)="save()">
       <div class=" form-group">
         <label for="ProductRowId">Product Row Id</label>
         <input type="text" class="form-control" id="ProductRowId" aria-describedby="emailHelp"
-          placeholder="Enter Product Row Id" formControlName="ProductRowId">
+          placeholder="Enter Product Row Id" formControlName="ProductRowId"
+          [productIdCheck]="{'products':products,'field':'rowId'}">
         <div class="error" *ngIf="formGroup.controls.ProductRowId.dirty && !formGroup.controls.ProductRowId.valid">
           <small *ngIf="formGroup.controls.ProductRowId.errors.required">Product Row Id is mandatory</small>
         </div>
@@ -13,11 +14,13 @@
       <div class="form-group">
         <label for="ProductId">Product Id</label>
         <input type="text" class="form-control" id="ProductId" placeholder="Enter Product Id"
-          formControlName="ProductId">
-        <div class="error" *ngIf="formGroup.controls.ProductId.dirty && !formGroup.controls.ProductId.valid">
+          formControlName="ProductId" [productIdCheck]="{'products':products,'field':'productId'}">
+        <div class=" error" *ngIf="formGroup.controls.ProductId.dirty && !formGroup.controls.ProductId.valid">
           <small *ngIf="formGroup.controls.ProductId.errors.required">Product Id is mandatory</small>
-          <small
+          <!-- 
+              <small
             *ngIf="formGroup.controls.ProductId.errors.notUnique">{{formGroup.controls.ProductId.errors.errorMessage}}</small>
+          -->
         </div>
       </div>
       <div class="form-group">
@@ -72,29 +75,7 @@
     </form>
   </div>
   <div class="col-xs-9">
-    <table>
-      <thead>
-        <tr>
-          <th *ngFor="let header of headers" class="tableCell">
-            {{header}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products;let i=index">
-          <td *ngFor=" let header of headers" class="tableCell">
-            <input type="text" [(ngModel)]="product[header]" [attr.name]="product.ProductId" disabled />
-          </td>
-          <td class="tableCell">
-            <input type="button" [value]="updateIsClicked?'Save':'Update'" id="Update" name="Update"
-              (click)="!updateIsClicked?makeRowEditable(product.ProductId):updateRecord(product)" />
-          </td>
-          <td class="tableCell">
-            <input type="button" value="Delete" id="Delete" name="Delete"
-              (click)="deleteProduct(product.ProductRowId)" />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <app-table-view [DataSource]="products" (update)="updateRecord($event)" (delete)="deleteProduct($event)">
+    </app-table-view>
   </div>
 </div>
