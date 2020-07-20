@@ -1,0 +1,25 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers" class="tableCell">
+          {{header}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of DataSource;let i=index" [setColor]="color">
+        <td *ngFor=" let header of headers" class="tableCell">
+          <input type="text" [(ngModel)]="product[header]" [attr.name]="product.ProductId" disabled />
+        </td>
+        <td class="tableCell">
+          <input type="button" value='Update' id="Update" name="Update" (click)="toUpdateComponent(product)" />
+        </td>
+        <td class="tableCell">
+          <input type="button" value="Delete" id="Delete" name="Delete" (click)="toDeleteComponent(product)" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

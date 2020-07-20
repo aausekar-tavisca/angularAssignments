@@ -1,6 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CalculatorComponent } from "./calculator/calculator.component";
@@ -14,6 +13,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { TableViewComponent } from "./table-view/table-view.component";
 import { ColorDirective } from "./custome-directives/app.color.directive";
 import { ProductIdCheckDirective } from "./custome-directives/app.product-id-check.directive";
+import { ProductListingComponent } from "./RoutingExample/product-listing.component/product.listing.component";
+import { ProductHomeComponent } from "./RoutingExample/product-home.component/product-home.component";
+import { ProductAddComponent } from "./RoutingExample/product-add.component/product-add.component";
+import { ProductUpateComponent } from "./RoutingExample/product-update.component/product-update.component";
+import { ProductDeleteComponent } from "./RoutingExample/product-delete.component/product-delete.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,11 @@ import { ProductIdCheckDirective } from "./custome-directives/app.product-id-che
     TableViewComponent,
     ColorDirective,
     ProductIdCheckDirective,
+    ProductHomeComponent,
+    ProductAddComponent,
+    ProductListingComponent,
+    ProductUpateComponent,
+    ProductDeleteComponent,
   ],
   imports: [
     BrowserModule,
